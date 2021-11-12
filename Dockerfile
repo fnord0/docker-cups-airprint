@@ -1,9 +1,15 @@
-ARG UBUNTU_VERSION=eoan
-FROM ubuntu:$UBUNTU_VERSION
+#ARG UBUNTU_VERSION=eoan
+#FROM ubuntu:$UBUNTU_VERSION
+FROM drpsychick/airprint-bridge:latest
 MAINTAINER drpsychick@drsick.net
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get -y upgrade
+
+# Canon printer driver
+RUN apt-get update && apt-get install -y software-properties-common
+RUN add-apt-repository ppa:thierry-f/fork-michael-gruz
+
 RUN apt-get -y install \
       cups-daemon \
       cups-client \
@@ -23,6 +29,8 @@ RUN apt-get -y install \
       libpng16-16 \
       python3-cups \
       samba-client \
+      scangearmp2 \
+      cnijfilter2 \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
