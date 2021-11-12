@@ -41,6 +41,10 @@ Browse to http://192.168.1.100:631/ (specified above as `$cups_ip` / `cups_ip=19
 Add Printer
 - My Canon printer was detected as **AirPrint Canon_TS5100_series @ cups**
 
+### Android
+Install [Canon Print Service](https://play.google.com/store/apps/details?id=jp.co.canon.android.printservice.plugin&hl=en_US&gl=US)
+- Print in any application and choose **AirPrint Canon_TS5100_series @ cups**
+
 # Credits
 This is based on awesome work of others
 * https://hub.docker.com/r/drpsychick/airprint-bridge | https://www.github.com/DrPsychick/docker-cups-airprint
