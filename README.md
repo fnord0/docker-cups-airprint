@@ -15,7 +15,7 @@ or you must provide a username and password whithin its device URI (`smb://user:
 
 ## QNAP TS-453D + Canon PIXMA TS5210 USB
 Connect your Canon PIXMA TS5210 printer via USB to the QNAP TS-453D NAS USB port
-SSH to your QNAP NAS and run the following commands (pay special attention to *$cups_ip*, *subnet*, *gateway* and *CUPS_USER_PASSWORD*)
+SSH to your QNAP NAS and run the following commands (pay special attention to *cups_ip*, *subnet*, *gateway* and *CUPS_USER_PASSWORD*)
 ```
 git clone https://github.com/fnord0/docker-cups-airprint.git
 cd docker-cups-airprint
