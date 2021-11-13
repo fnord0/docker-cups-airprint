@@ -19,15 +19,31 @@ SSH to your QNAP NAS and run the following commands (pay special attention to *$
 ```
 git clone https://github.com/fnord0/docker-cups-airprint.git
 cd docker-cups-airprint
+
 docker build -t drpsychick/airprint-bridge .
+
 docker network create --driver=qnet --ipam-driver=qnet --ipam-opt=iface=bond0 --subnet 192.168.1.0/18 --gateway 192.168.1.1 localnet
+
 cups_ip=192.168.1.100
 cups_name=cups.home
-docker create --name=cups-airprint --net=localnet --ip=$cups_ip --hostname=$cups_name \
-  --memory=100M -p 137:137/udp -p 139:139/tcp -p 445:445/tcp -p 631:631/tcp -p 5353:5353/udp \
-  -v /var/run/dbus:/var/run/dbus --device /dev/bus --device /dev/usb \
-  -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD="secr3t" \
+
+docker create --name=cups-airprint \
+  --net=localnet \
+  --ip=$cups_ip \
+  --hostname=$cups_name \
+  --memory=100M \
+  -p 137:137/udp \
+  -p 139:139/tcp \
+  -p 445:445/tcp \
+  -p 631:631/tcp \
+  -p 5353:5353/udp \
+  -v /var/run/dbus:/var/run/dbus \
+  --device /dev/bus \
+  --device /dev/usb \
+  -e CUPS_USER_ADMIN=admin \
+  -e CUPS_USER_PASSWORD="secr3t" \
   drpsychick/airprint-bridge
+
 docker start cups-airprint
 ```
 
