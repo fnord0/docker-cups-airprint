@@ -37,6 +37,7 @@ docker create --name=cups-airprint \
   -p 445:445/tcp \
   -p 631:631/tcp \
   -p 5353:5353/udp \
+  -p 6656:6656/udp \
   -v /var/run/dbus:/var/run/dbus \
   --device /dev/bus \
   --device /dev/usb \
