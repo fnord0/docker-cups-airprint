@@ -29,6 +29,7 @@ RUN apt-get -y install \
       libpng16-16 \
       python3-cups \
       samba-client \
+# Canon printer and scanner drivers
       scangearmp2 \
       cnijfilter2 \
     && apt-get autoremove -y \
@@ -37,17 +38,29 @@ RUN apt-get -y install \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/*
 
+# sane-airscan - https://software.opensuse.org//download.html?project=home%3Apzz&package=sane-airscan
+RUN echo 'deb http://download.opensuse.org/repositories/home:/pzz/xUbuntu_20.04/ /' >> /etc/apt/sources.list.d/home:pzz.list
+RUN curl -fsSL https://download.opensuse.org/repositories/home:pzz/xUbuntu_20.04/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_pzz.gpg > /dev/null
+RUN apt update && apt-get -y install sane-airscan 
+
+# share your scanner via sane on port 6566
+RUN echo 'localhost' >> /etc/sane.d/saned.conf
+RUN echo '192.168.0.0/18' >> /etc/sane.d/saned.conf
+
 # TODO: really needed?
-#COPY mime/ /etc/cups/mime/
+COPY mime/ /etc/cups/mime/
 
 # setup airprint and google cloud print scripts
 COPY airprint/ /opt/airprint/
 COPY gcp-connector /etc/init.d/
-RUN useradd -s /usr/sbin/nologin -r -M gcp-connector \
-    && mkdir /etc/gcp-connector \
+
+# getting error: "useradd: user 'gcp-connector' already exists"
+#RUN useradd -s /usr/sbin/nologin -r -M gcp-connector \
+
+RUN mkdir -p /etc/gcp-connector \
     && chown gcp-connector /etc/gcp-connector \
     && chmod +x /etc/init.d/gcp-connector \
-    && mkdir /var/run/dbus
+    && mkdir -p /var/run/dbus
 
 COPY healthcheck.sh /
 COPY start-cups.sh /root/
