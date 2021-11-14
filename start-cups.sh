@@ -153,5 +153,8 @@ cloud: ${GCP_ENABLE_CLOUD}
 EOF
 ) &
 
+### Start saned service ###
+/etc/init.d/saned start
+
 ### Start CUPS instance ###
 /usr/sbin/cupsd -f
