@@ -1,0 +1,37 @@
+version: "2.4"
+
+services:
+  cups-airprint:
+    container_name: cups-airprint
+    image: drpsychick/airprint-bridge:latest
+    networks:
+      qnet-static:
+        ipv4_address: 192.168.1.100
+    ports:
+      - "137:137"
+      - "139:139"
+      - "445:445"
+      - "631:631"
+      - "5353:5353"
+      - "6566:6566"
+    volumes:
+      - /var/run/dbus:/var/run/dbus
+      - /share/docker-data/airprint_data/config:/config
+      - /share/docker-data/airprint_data/services:/services
+    devices:
+      - /dev/bus
+      - /dev/usb
+    restart: always
+    environment:
+      - TZ=PST
+      - CUPS_USER_ADMIN=admin
+      - CUPS_USER_PASSWORD=secr3t
+      - CUPS_IP=192.168.1.100
+      - CUPS_HOSTNAME=cups.home
+      - CUPS_WEBINTERFACE=yes
+      - CUPS_SHARE_PRINTERS=yes
+      - CUPS_REMOTE_ADMIN=yes
+
+networks:
+  qnet-static:
+    external: true
