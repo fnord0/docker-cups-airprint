@@ -115,7 +115,7 @@ these out. Also the `config/services` data will be saved to the `/share/docker-d
 directory. Again you may want to edit this to your own liking.
 
 ## [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station)
-If you would like to build the Docker container via the [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station) GUI utilize the following instructions. Be aware how Applications work - just for reference here is an example of how a (Gitea server would be setup through QNAP Container Station as an Application)[https://www.anchorpoint.app/blog/setting-up-a-self-hosted-git-server].
+If you would like to build the Docker container via the [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station) GUI utilize the following instructions. Be aware how Applications work - just for reference here is an example of how a (Gitea server)[https://www.anchorpoint.app/blog/setting-up-a-self-hosted-git-server] would be setup through QNAP Container Station as an Application.
 - Make sure you've already created a Docker network, checked out this repo and ran the build process as specified at the top of this document.
 - Launch **Container Station**, click **Create** on the *left*
 - Click **Create Application**
@@ -170,8 +170,8 @@ Browse to http://192.168.1.100:631/ (specified above as `$cups_ip` / `cups_ip=19
     - My printer showed up in the list as Name: **Canon_TS5100_series**
     - Specify your model/driver, I choose **Canon TS5100 series Ver.5.50 (en, de, fr, zh, ja)** model/driver
 
-### (sane-airscan)[https://github.com/alexpevzner/sane-airscan] / (saned)[https://help.ubuntu.com/community/sane]
-- Your scanner should be automatically shared on the network via port 6656. Try to using (a tool listed here)[http://www.sane-project.org/sane-frontends.html], I personally like (SaneTwain)[https://sanetwain.ozuzo.net/].
+### [sane-airscan](https://github.com/alexpevzner/sane-airscan) / [saned](https://help.ubuntu.com/community/sane)
+- Your scanner should be automatically shared on the network via port 6656. Try to using [a tool listed here](http://www.sane-project.org/sane-frontends.html), I personally like [SaneTwain](https://sanetwain.ozuzo.net/).
 - Review the **Dockerfile** where the `/etc/sane.d/saned.conf` is getting configured using these lines:
     ```
     RUN echo 'localhost' >> /etc/sane.d/saned.conf
