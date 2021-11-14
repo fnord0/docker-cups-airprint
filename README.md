@@ -115,7 +115,7 @@ these out. Also the `config/services` data will be saved to the `/share/docker-d
 directory. Again you may want to edit this to your own liking.
 
 ## [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station)
-If you would like to build the Docker container via the [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station) GUI utilize the following instructions. Be aware how Applications work (just for reference here is an example of how a (Gitea server would be setup through Container Station as an Application)[https://www.anchorpoint.app/blog/setting-up-a-self-hosted-git-server]).
+If you would like to build the Docker container via the [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station) GUI utilize the following instructions. Be aware how Applications work - just for reference here is an example of how a (Gitea server would be setup through QNAP Container Station as an Application)[https://www.anchorpoint.app/blog/setting-up-a-self-hosted-git-server].
 - Make sure you've already created a Docker network, checked out this repo and ran the build process as specified at the top of this document.
 - Launch **Container Station**, click **Create** on the *left*
 - Click **Create Application**
