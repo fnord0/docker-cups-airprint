@@ -31,6 +31,7 @@ services:
       - CUPS_WEBINTERFACE=yes
       - CUPS_SHARE_PRINTERS=yes
       - CUPS_REMOTE_ADMIN=yes
+      - AIRSCAN_SUBNET=192.168.0.0/18
 
 networks:
   qnet-static:
