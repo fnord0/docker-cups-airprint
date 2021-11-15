@@ -58,6 +58,7 @@ $ docker create \
        -e CUPS_HOSTNAME=${cups_name} \
        -e CUPS_SHARE_PRINTERS=yes \
        -e CUPS_REMOTE_ADMIN=yes \
+       -e AIRSCAN_SUBNET=192.168.0.0/18 \
        drpsychick/airprint-bridge:latest
 ```
 To start the container
@@ -99,6 +100,7 @@ respectively, but these could just as well be anywhere on your file system. See 
 * `-e CUPS_HOSTNAME=${cups_name}`: the hostname you wish to call the CUPS server, also configured before running `docker create`
 * `-e CUPS_SHARE_PRINTERS=yes`: do you want your CUPS printer to share printers by default, `yes` OR `no`
 * `-e CUPS_REMOTE_ADMIN=yes`: do you want your CUPS docker container to be remotely administrated, `yes` OR `no`
+* `-e AIRSCAN_SUBNET=192.168.0.0/18`: subnet you want to share your scanner with via AirScan over the network
 * `--device /dev/bus`: device mounted for interacting with USB printers
 * `--device /dev/usb`: device mounted for interacting with USB printers
 
@@ -121,7 +123,7 @@ If you would like to build the Docker container via the [QNAP Container Station]
 - Make sure you've already created a Docker network, checked out this repo and ran the build process as specified at the top of this document.
 - Launch **Container Station**, click **Create** on the *left*
 - Click **Create Application**
-- Paste the following Docker-compose code (*no TABS*) into the Create Application window
+- Paste the following Docker-compose code (*no TABS*) into the Create Application window, modify the environment variable values to suit your preferences
 ```
 version: "2.4"
 
@@ -156,6 +158,7 @@ services:
       - CUPS_WEBINTERFACE=yes
       - CUPS_SHARE_PRINTERS=yes
       - CUPS_REMOTE_ADMIN=yes
+      - AIRSCAN_SUBNET=192.168.0.0/18
 
 networks:
   qnet-static:
@@ -174,12 +177,8 @@ Browse to http://192.168.1.100:631/ (specified above as `$cups_ip` / `cups_ip=19
 
 ### [sane-airscan](https://github.com/alexpevzner/sane-airscan) / [saned](https://help.ubuntu.com/community/sane)
 - Your scanner should be automatically shared on the network via port 6656. Try to using [a tool listed here](http://www.sane-project.org/sane-frontends.html), I personally like [SaneTwain](https://sanetwain.ozuzo.net/).
-- Review the **Dockerfile** where the `/etc/sane.d/saned.conf` is getting configured using these lines:
-    ```
-    RUN echo 'localhost' >> /etc/sane.d/saned.conf
-    RUN echo '192.168.0.0/18' >> /etc/sane.d/saned.conf
-    ```
-- Ideally, you will want to modify the subnet `192.168.0.0/18` to the subnet you intend to use on your server/NAS.
+- The environment variable `AIRSCAN_SUBNET` allows you to specify which subnet you want to share your scanner with over the network
+    - I personally use `AIRSCAN_SUBNET=192.168.0.0/18`
 
 ### Windows 10x64
 Add Printer
