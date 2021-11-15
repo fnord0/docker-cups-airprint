@@ -25,6 +25,7 @@ GCP_ENABLE_CLOUD=${GCP_ENABLE_CLOUD:-"false"}
 GCP_XMPP_JID=${GCP_XMPP_JID:-""}
 GCP_REFRESH_TOKEN=${GCP_REFRESH_TOKEN:-""}
 GCP_PROXY_NAME=${GCP_PROXY_NAME:-""}
+AIRSCAN_SUBNET=${AIRSCAN_SUBNET:-""}
 [ "yes" = "${CUPS_ENV_DEBUG}" ] && export -n
 
 ### check for valid input
@@ -154,6 +155,7 @@ EOF
 ) &
 
 ### Start saned service ###
+echo -e "localhost\n${AIRSCAN_SUBNET}" > /etc/sane.d/saned.conf
 /etc/init.d/saned start
 
 ### Start CUPS instance ###
