@@ -1,4 +1,4 @@
-# Simple AirPrint bridge docker container to be run on QNAP NAS to share a Canon (PIXMA TS5100-series) USB printer
+# Simple AirPrint bridge docker container to be run on QNAP NAS to share a Canon (PIXMA TS5100-series) USB printer+scanner
 
 ## Purpose
 Run a container with CUPS and Avahi (mDNS/Bonjour) so that local printers 
