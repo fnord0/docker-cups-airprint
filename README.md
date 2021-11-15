@@ -16,8 +16,10 @@ for Canon printers and scanners. I am specifically using a Canon PIXMA TS5120 pr
 or you must provide a username and password whithin its device URI (`smb://user:pass@host/printer`)
 
 ## QNAP TS-453D + Canon PIXMA TS5210 USB
-Connect your Canon PIXMA TS5210 printer via USB to the QNAP TS-453D NAS USB port
-SSH to your QNAP NAS and run the following commands (pay special attention to *cups_ip*, *subnet*, *gateway* and *CUPS_USER_PASSWORD*)
+* Connect your Canon PIXMA TS5210 printer via USB to the QNAP TS-453D NAS USB port
+* SSH to your QNAP NAS and run the following commands (pay special attention to *cups_ip*, *subnet*, *gateway* and *CUPS_USER_PASSWORD*)
+    - The first command is to [create a docker network](https://docs.docker.com/engine/reference/commandline/network_create/) using the [Qnet driver](https://qnap-dev.github.io/container-station-api/qnet.html).
+    - I prefer to utilize a static IP, there are options to use DHCP if you want.
 ```
 $ docker network create --driver=qnet --ipam-driver=qnet --ipam-opt=iface=bond0 --subnet 192.168.0.0/18 --gateway 192.168.1.1 qnet-static
 
@@ -114,7 +116,7 @@ NOTE: This compose file is made with `USB` printers in mind and like the above c
 these out. Also the `config/services` data will be saved to the `/share/docker-data/airprint_data/services`
 directory. Again you may want to edit this to your own liking.
 
-## [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station)
+## [QNAP Container Station Application](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station)
 If you would like to build the Docker container via the [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station) GUI utilize the following instructions. Be aware how Applications work - just for reference here is an example of how a [Gitea server](https://www.anchorpoint.app/blog/setting-up-a-self-hosted-git-server) would be setup through QNAP Container Station as an Application.
 - Make sure you've already created a Docker network, checked out this repo and ran the build process as specified at the top of this document.
 - Launch **Container Station**, click **Create** on the *left*
