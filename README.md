@@ -116,14 +116,15 @@ $ docker-compose up --build
 NOTE: This compose file is made with `USB` printers in mind and like the above commands has 
 `device` mounts for `USB` printers. If you don't have a `USB` printer you may want to comment 
 these out. Also the `config/services` data will be saved to the `/share/docker-data/airprint_data/services`
-directory. Again you may want to edit this to your own liking.
+directory. Edit the file `docker-compose.yml` and configure the environment variables to your own liking 
+**before running** the command `docker-compose up --build`.
 
 ## [QNAP Container Station Application](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station)
 If you would like to build the Docker container via the [QNAP Container Station](https://www.qnap.com/en/how-to/tutorial/article/how-to-use-container-station) GUI utilize the following instructions. Be aware how Applications work - just for reference here is an example of how a [Gitea server](https://www.anchorpoint.app/blog/setting-up-a-self-hosted-git-server) would be setup through QNAP Container Station as an Application.
 - Make sure you've already created a Docker network, checked out this repo and ran the build process as specified at the top of this document.
 - Launch **Container Station**, click **Create** on the *left*
 - Click **Create Application**
-- Paste the following Docker-compose code (*no TABS*) into the Create Application window, modify the environment variable values to suit your preferences
+- Paste the following Docker-compose code (*no* **TABS**) into the Create Application window, **modify the environment variable values to suit your preferences**
 ```
 version: "2.4"
 
