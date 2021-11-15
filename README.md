@@ -195,5 +195,7 @@ This is based on awesome work of others
 * https://hub.docker.com/r/drpsychick/airprint-bridge | https://www.github.com/DrPsychick/docker-cups-airprint
 * https://hub.docker.com/r/jstrader/airprint-cloudprint/
 * https://github.com/tjfontaine/airprint-generate
+* https://launchpad.net/~thierry-f/+archive/ubuntu/fork-michael-gruz
+* https://software.opensuse.org//download.html?project=home%3Apzz&package=sane-airscan
 
 ## See https://hub.docker.com/r/drpsychick/airprint-bridge for more information
