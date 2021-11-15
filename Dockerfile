@@ -41,11 +41,7 @@ RUN apt-get -y install \
 # sane-airscan - https://software.opensuse.org//download.html?project=home%3Apzz&package=sane-airscan
 RUN echo 'deb http://download.opensuse.org/repositories/home:/pzz/xUbuntu_20.04/ /' >> /etc/apt/sources.list.d/home:pzz.list
 RUN curl -fsSL https://download.opensuse.org/repositories/home:pzz/xUbuntu_20.04/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_pzz.gpg > /dev/null
-RUN apt update && apt-get -y install sane-airscan 
-
-# share your scanner via sane on port 6566
-RUN echo 'localhost' >> /etc/sane.d/saned.conf
-RUN echo '192.168.0.0/18' >> /etc/sane.d/saned.conf
+RUN apt update && apt-get -y install sane-airscan
 
 # TODO: really needed?
 COPY mime/ /etc/cups/mime/
@@ -79,6 +75,7 @@ ENV TZ="GMT" \
     CUPS_ACCESS_LOGLEVEL="config" \
     # example: lpadmin -p Epson-RX520 -D 'my RX520' -m 'gutenprint.5.3://escp2-rx620/expert' -v smb://user:pass@host/Epson-RX520"
     CUPS_LPADMIN_PRINTER1=""
+    AIRSCAN_SUBNET="192.168.0.0/18"
 
 # google cloud print config
 # run `gcp-connector-util init` and take the values from the resulting json file
