@@ -3,7 +3,7 @@
 ## Purpose
 Run a container with CUPS and Avahi (mDNS/Bonjour) so that local printers 
 on the network can be exposed via AirPrint to iOS/macOS, Windows and Android devices.
-Also airscan is utilized for network-based scanning. This docker image is custom-built 
+Also AirScan is utilized for network-based scanning. This docker image is custom-built 
 for Canon printers and scanners. I am specifically using a Canon PIXMA TS5120 printer+scanner.
 
 ## Requirements
